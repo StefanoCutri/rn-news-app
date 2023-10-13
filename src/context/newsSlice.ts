@@ -1,24 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { NewsAPI } from '../interfaces'
+import { Article, NewsAPI } from '../interfaces'
 
 export interface NewsSlice {
-  news: NewsAPI
+  news: Article[]
 }
 
 const initialState: NewsSlice = {
-  news: {
-    articles: [],
-    status: '',
-    totalResults: 0
-  },
+  news: [],
 }
 
 export const newsSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    getNews: (state, action: PayloadAction<NewsAPI>)=> {
+    getNews: (state, action: PayloadAction<Article[]>)=> {
       state.news = action.payload
     },
   },

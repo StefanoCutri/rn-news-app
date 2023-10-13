@@ -6,7 +6,7 @@ const NewsService = {
     getNews: async() => {
         try {
             const response = await newsApi.get<NewsAPI>('top-headlines?language=en&category=business');
-            return response.data;
+            return response.data.articles;
         } catch (error) {
             console.log("Error fetching news: ", error);
             throw error;

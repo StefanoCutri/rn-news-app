@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import NewsService from '../data/api/NewsService';
 import {getNews} from '../context/newsSlice';
@@ -25,7 +25,14 @@ const HomeScreen = () => {
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
+      <ScrollView>
+        <Text>Home Screen</Text>
+        {news.map(article => (
+          <Text key={article.title} style={{color: 'black'}}>
+            {article.title}
+          </Text>
+        ))}
+      </ScrollView>
     </View>
   );
 };
