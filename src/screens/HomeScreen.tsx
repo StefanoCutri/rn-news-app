@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import NewsService from '../data/api/NewsService';
 import {getNews} from '../context/newsSlice';
 import {RootState} from '../context/store';
+import {NewsArticle} from '../components/NewsArticle/NewsArticle';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -13,9 +14,8 @@ const HomeScreen = () => {
     try {
       const fetchedNews = await NewsService.getNews();
       dispatch(getNews(fetchedNews));
-      console.log(fetchedNews);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 
@@ -24,15 +24,12 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <ScrollView>
-        <Text>Home Screen</Text>
-        {news.map(article => (
-          <Text key={article.title} style={{color: 'black'}}>
-            {article.title}
-          </Text>
-        ))}
-      </ScrollView>
+    <View style={{flex: 1}}>
+      <FlatList
+        data={news}
+        keyExtractor={item => item.url}
+        renderItem={({item}) => <NewsArticle article={item} />}
+      />
     </View>
   );
 };
