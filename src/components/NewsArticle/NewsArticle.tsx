@@ -8,7 +8,7 @@ import { Article } from '../../interfaces';
 
 export const NewsArticle: React.FC<{article: Article}> = ({article: post}) => {
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.container}>
+    <TouchableOpacity activeOpacity={.7} style={styles.container}>
       <Image
         source={{
           uri: post?.urlToImage ?? 'https://picsum.photos/800',
