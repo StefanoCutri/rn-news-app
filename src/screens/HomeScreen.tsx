@@ -5,6 +5,7 @@ import NewsService from '../data/api/NewsService';
 import {getNews} from '../context/newsSlice';
 import {RootState} from '../context/store';
 import {NewsArticle} from '../components/NewsArticle/NewsArticle';
+import Navbar from '../components/ui/Navbar/Navbar';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,10 @@ const HomeScreen = () => {
 
   return (
     <View style={{flex: 1}}>
+      <Navbar/>
       <FlatList
         data={news}
-        keyExtractor={item => item.url}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => <NewsArticle article={item} />}
       />
     </View>
