@@ -3,12 +3,21 @@ import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-import { Article } from '../../interfaces';
+import {Article} from '../../interfaces';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/core';
 
+type RootStackParamList = {
+  Article: {} | undefined;
+};
 
 export const NewsArticle: React.FC<{article: Article}> = ({article: post}) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
-    <TouchableOpacity activeOpacity={.7} style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={styles.container}
+      onPress={() => navigation.navigate('Article')}>
       <Image
         source={{
           uri: post?.urlToImage ?? 'https://picsum.photos/800',
