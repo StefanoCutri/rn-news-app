@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import NewsService from '../data/api/NewsService';
-import {getNews} from '../context/newsSlice';
-import {RootState} from '../context/store';
+import {getNews} from '../features/newsSlice';
+import {RootState} from '../features/store';
 import {NewsArticle} from '../components/NewsArticle/NewsArticle';
 import Navbar from '../components/ui/Navbar/Navbar';
 
