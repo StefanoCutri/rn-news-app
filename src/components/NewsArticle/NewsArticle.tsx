@@ -11,7 +11,7 @@ type RootStackParamList = {
   Article: {} | undefined;
 };
 
-export const NewsArticle: React.FC<{article: Article}> = ({article: post}) => {
+export const NewsArticle: React.FC<{article: Article}> = ({article}) => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <TouchableOpacity
@@ -20,7 +20,7 @@ export const NewsArticle: React.FC<{article: Article}> = ({article: post}) => {
       onPress={() => navigation.navigate('Article')}>
       <Image
         source={{
-          uri: post?.urlToImage ?? 'https://picsum.photos/800',
+          uri: article?.urlToImage ?? 'https://picsum.photos/800',
           cache: 'force-cache',
         }}
         resizeMode={'cover'}
@@ -29,9 +29,9 @@ export const NewsArticle: React.FC<{article: Article}> = ({article: post}) => {
       <LinearGradient
         colors={['#0000', '#000A', '#000']}
         style={styles.titleContainer}>
-        <Text style={styles.text}>{post?.title}</Text>
+        <Text style={styles.text}>{article?.title}</Text>
         <Text style={styles.timestamp}>
-          {moment(post?.publishedAt).format('HH:MM DD, MMMM')}
+          {moment(article?.publishedAt).format('DD/MM/YY')}
         </Text>
       </LinearGradient>
     </TouchableOpacity>
