@@ -3,7 +3,11 @@ import {View, TextInput, Text} from 'react-native';
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
 import styles from './styles';
 
-const Navbar = () => {
+interface Props {
+  onSearch: () => void;
+  setSearchTerm: (term: string) => void;
+}
+const Navbar: React.FC<Props> = ({onSearch, setSearchTerm}) => {
   return (
     <View style={styles.container}>
       <MagnifyingGlassIcon color="black" size={18} />
@@ -13,8 +17,10 @@ const Navbar = () => {
         placeholderTextColor="#000"
         style={{
           width: '80%',
-          color: '#000'
+          color: '#000',
         }}
+        onChangeText={(text) => setSearchTerm(text)}
+        onSubmitEditing={onSearch}
       />
     </View>
   );

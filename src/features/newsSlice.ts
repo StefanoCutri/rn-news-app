@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { Article, NewsAPI } from '../interfaces'
+import { Article, } from '../interfaces'
 
 export interface NewsSlice {
-  news: Article[]
+  news: Article[];
+  filteredNews: Article[];
 }
 
 const initialState: NewsSlice = {
   news: [],
+  filteredNews: []
 }
 
 export const newsSlice = createSlice({
@@ -16,11 +18,15 @@ export const newsSlice = createSlice({
   reducers: {
     getNews: (state, action: PayloadAction<Article[]>)=> {
       state.news = action.payload
+      state.filteredNews = action.payload
+    },
+    setSearchResults: (state, action: PayloadAction<Article[]>)=> {
+      state.filteredNews = action.payload
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { getNews } = newsSlice.actions
+export const { getNews, setSearchResults } = newsSlice.actions
 
 export default newsSlice.reducer
