@@ -17,7 +17,9 @@ export const NewsArticle: React.FC<{article: Article}> = ({article}) => {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.container}
-      onPress={() => navigation.navigate('Article')}>
+      onPress={() => navigation.navigate('Article', {
+        article: article
+      })}>
       <Image
         source={{
           uri: article?.urlToImage ?? 'https://picsum.photos/800',

@@ -1,12 +1,8 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+import ArticleDetails from '../components/ArticleDetails/ArticleDetails';
 
 const ArticleScreen = () => {
-  return (
-    <View>
-      <Text>ArticleScreen</Text>
-    </View>
-  )
-}
+  return <ArticleDetails />;
+};
 
-export default ArticleScreen
+export default ArticleScreen;
