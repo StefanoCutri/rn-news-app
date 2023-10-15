@@ -4,8 +4,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      paddingHorizontal: 16,
-      paddingTop: 24,
+    //   paddingHorizontal: 16,
+    //   paddingTop: 24,
     },
     title: {
       fontSize: 28,
@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
       lineHeight: 24,
       color: '#444',
     },
+    info: {
+        paddingHorizontal: 20
+    }
   });
   
   export default styles;

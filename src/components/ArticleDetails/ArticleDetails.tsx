@@ -1,16 +1,16 @@
-// ArticleDetailsScreen.tsx
-
 import React from 'react';
-import {Text, Image, View} from 'react-native';
-import styles from './styles';
-import {useRoute} from '@react-navigation/native';
+import {Text, Image, View, TouchableOpacity} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {ArrowLeftCircleIcon} from 'react-native-heroicons/outline';
 import {Article} from '../../interfaces';
+import styles from './styles';
 
 interface RouteParams {
   article: Article;
 }
 
 const ArticleDetailsScreen: React.FC = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const {article} = route.params as RouteParams;
 
@@ -24,9 +24,21 @@ const ArticleDetailsScreen: React.FC = () => {
         resizeMode={'cover'}
         style={styles.image}
       />
-      <Text style={styles.title}>{article.title}</Text>
-      <Text style={styles.description}>{article.description}</Text>
-      <Text style={styles.content}>{article.content}</Text>
+      <TouchableOpacity
+        activeOpacity={0.4}
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: 10,
+        }}
+        onPress={() => navigation.goBack()}>
+        <ArrowLeftCircleIcon color="white" size={45} />
+      </TouchableOpacity>
+      <View style={styles.info}>
+        <Text style={styles.title}>{article.title}</Text>
+        <Text style={styles.description}>{article.description}</Text>
+        <Text style={styles.content}>{article.content}</Text>
+      </View>
     </View>
   );
 };
