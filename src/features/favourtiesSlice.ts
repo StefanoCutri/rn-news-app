@@ -15,18 +15,18 @@ export const favouritesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavourite: (state, action: PayloadAction<Article>) => {
-        const articleIndex = state.favourites.findIndex(
-          (article) => article.source.name === action.payload.source.name
-        );
-  
-        if (articleIndex !== -1) {
-          // Article is already in favorites, remove it
-          state.favourites.splice(articleIndex, 1);
-        } else {
-          // Article is not in favorites, add it
-          state.favourites.push(action.payload);
-        }
-      },
+      const articleIndex = state.favourites.findIndex(
+        article => article.source.name === action.payload.source.name,
+      );
+
+      if (articleIndex !== -1) {
+        // Article is already in favorites, remove it
+        state.favourites.splice(articleIndex, 1);
+      } else {
+        // Article is not in favorites, add it
+        state.favourites.push(action.payload);
+      }
+    },
   },
 });
 

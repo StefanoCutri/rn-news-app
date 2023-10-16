@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Text,
   Image,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArrowLeftCircleIcon, HeartIcon} from 'react-native-heroicons/outline';
+import {HeartIcon as HeartIconSolid} from 'react-native-heroicons/solid';
 import {Article} from '../../interfaces';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
@@ -26,17 +27,20 @@ const ArticleDetailsScreen: React.FC = () => {
   const route = useRoute();
   const {article} = route.params as RouteParams;
   const dispatch = useDispatch();
+  const isFavorite = favourites.some(
+    favArticle => favArticle.source.name === article.source.name,
+  );
 
   const handleURLPress = useCallback(() => {
     Linking.openURL(article?.url);
   }, [article]);
 
   const handleToggle = () => {
-    dispatch(toggleFavourite(article!));
+    dispatch(toggleFavourite(article));
   };
 
   useEffect(() => {
-    console.log(favourites);
+    console.log({isFavorite});
   }, [favourites]);
 
   return (
@@ -74,10 +78,21 @@ const ArticleDetailsScreen: React.FC = () => {
           style={styles.addToFavourites}
           activeOpacity={0.7}
           onPress={handleToggle}>
-          <HeartIcon color="red" size={30} />
-          <Text style={{color: 'black', marginLeft: 10}}>
-            Add to Favourites{' '}
-          </Text>
+          {isFavorite ? (
+            <>
+              <HeartIconSolid color="red" size={30} />
+              <Text style={{color: 'black', marginLeft: 10}}>
+                Remove from favourites{' '}
+              </Text>
+            </>
+          ) : (
+            <>
+              <HeartIcon color="black" size={30} />
+              <Text style={{color: 'black', marginLeft: 10}}>
+                Add to Favourites{' '}
+              </Text>
+            </>
+          )}
         </TouchableOpacity>
       </View>
     </View>
