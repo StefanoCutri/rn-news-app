@@ -1,11 +1,18 @@
-import React from 'react';
-import { Text, Image, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import React, {useCallback} from 'react';
+import {
+  Text,
+  Image,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+  Linking,
+} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArrowLeftCircleIcon} from 'react-native-heroicons/outline';
 import {Article} from '../../interfaces';
 import styles from './styles';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../features/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../features/store';
 
 interface RouteParams {
   article: Article;
@@ -19,10 +26,12 @@ const ArticleDetailsScreen: React.FC = () => {
   const route = useRoute();
   const {article} = route.params as RouteParams;
 
+  const handleURLPress = useCallback(() => {
+    Linking.openURL(article?.url);
+  }, [article]);
+
   if (isLoading) {
-    return (
-      <ActivityIndicator size={90} color='red'/>
-    )
+    return <ActivityIndicator size={90} color="red" />;
   }
 
   return (
@@ -47,8 +56,15 @@ const ArticleDetailsScreen: React.FC = () => {
       </TouchableOpacity>
       <View style={styles.info}>
         <Text style={styles.title}>{article.title}</Text>
-        <Text style={styles.description}>{article.description}</Text>
         <Text style={styles.content}>{article.content}</Text>
+        <View style={{marginTop: 10}}>
+          <Text style={[styles.readMoreText]} numberOfLines={2}>
+            Read more at:{' '}
+            <Text style={styles.link} onPress={handleURLPress}>
+              {article?.url}
+            </Text>
+          </Text>
+        </View>
       </View>
     </View>
   );

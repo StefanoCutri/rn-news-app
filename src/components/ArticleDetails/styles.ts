@@ -13,10 +13,17 @@ const styles = StyleSheet.create({
       marginBottom: 8,
       color: '#333',
     },
-    description: {
-      fontSize: 18,
-      color: '#000',
-      marginBottom: 16,
+    readMoreText: {
+      fontSize: 13,
+      fontWeight: '300',
+      lineHeight: 22,
+      color: '#000'
+    },
+    link: {
+      color: '#00beff',
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'solid',
+      textDecorationColor: '#00beff',
     },
     image: {
       width: '100%',
