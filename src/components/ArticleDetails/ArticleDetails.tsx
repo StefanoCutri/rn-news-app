@@ -43,7 +43,7 @@ const ArticleDetailsScreen: React.FC = () => {
           left: 10,
         }}
         onPress={() => navigation.goBack()}>
-        <ArrowLeftCircleIcon color="white" size={45} />
+        <ArrowLeftCircleIcon color="black" size={45} />
       </TouchableOpacity>
       <View style={styles.info}>
         <Text style={styles.title}>{article.title}</Text>
