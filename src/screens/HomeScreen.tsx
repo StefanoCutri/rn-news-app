@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, ActivityIndicator, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {getNews, setSearchResults} from '../features/newsSlice';
@@ -10,7 +10,9 @@ import Navbar from '../components/ui/Navbar/Navbar';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const {news, filteredNews} = useSelector((state: RootState) => state.news);
+  const {news, filteredNews, isLoading} = useSelector(
+    (state: RootState) => state.news,
+  );
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -35,8 +37,6 @@ const HomeScreen = () => {
         article.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
 
-      console.log(results);
-
       dispatch(setSearchResults(results));
     }, 500);
 
@@ -47,11 +47,17 @@ const HomeScreen = () => {
   return (
     <View style={{flex: 1}}>
       <Navbar onSearch={() => {}} setSearchTerm={setSearchTerm} />
-      <FlatList
-        data={filteredNews}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => <NewsArticle article={item} />}
-      />
+      {isLoading ? (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size={50} color="#000" />
+        </View>
+      ) : (
+        <FlatList
+          data={filteredNews}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => <NewsArticle article={item} />}
+        />
+      )}
     </View>
   );
 };

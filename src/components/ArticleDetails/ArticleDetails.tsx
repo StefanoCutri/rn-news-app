@@ -1,18 +1,29 @@
 import React from 'react';
-import {Text, Image, View, TouchableOpacity} from 'react-native';
+import { Text, Image, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArrowLeftCircleIcon} from 'react-native-heroicons/outline';
 import {Article} from '../../interfaces';
 import styles from './styles';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../features/store';
 
 interface RouteParams {
   article: Article;
 }
 
 const ArticleDetailsScreen: React.FC = () => {
+  const {news, filteredNews, isLoading} = useSelector(
+    (state: RootState) => state.news,
+  );
   const navigation = useNavigation();
   const route = useRoute();
   const {article} = route.params as RouteParams;
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator size={90} color='red'/>
+    )
+  }
 
   return (
     <View style={styles.container}>
