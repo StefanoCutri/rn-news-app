@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {
   Text,
   Image,
@@ -12,28 +12,32 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArrowLeftCircleIcon, HeartIcon} from 'react-native-heroicons/outline';
 import {Article} from '../../interfaces';
 import styles from './styles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../features/store';
+import {toggleFavourite} from '../../features/favourtiesSlice';
 
 interface RouteParams {
   article: Article;
 }
 
 const ArticleDetailsScreen: React.FC = () => {
-  const {news, filteredNews, isLoading} = useSelector(
-    (state: RootState) => state.news,
-  );
+  const {favourites} = useSelector((state: RootState) => state.favourites);
   const navigation = useNavigation();
   const route = useRoute();
   const {article} = route.params as RouteParams;
+  const dispatch = useDispatch();
 
   const handleURLPress = useCallback(() => {
     Linking.openURL(article?.url);
   }, [article]);
 
-  if (isLoading) {
-    return <ActivityIndicator size={90} color="red" />;
-  }
+  const handleToggle = () => {
+    dispatch(toggleFavourite(article!));
+  };
+
+  useEffect(() => {
+    console.log(favourites);
+  }, [favourites]);
 
   return (
     <View style={styles.container}>
@@ -66,7 +70,10 @@ const ArticleDetailsScreen: React.FC = () => {
             </Text>
           </Text>
         </View>
-        <TouchableOpacity style={styles.addToFavourites} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={styles.addToFavourites}
+          activeOpacity={0.7}
+          onPress={handleToggle}>
           <HeartIcon color="red" size={30} />
           <Text style={{color: 'black', marginLeft: 10}}>
             Add to Favourites{' '}
