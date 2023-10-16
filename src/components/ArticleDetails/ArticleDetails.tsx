@@ -1,12 +1,11 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {
   Text,
   Image,
   View,
   TouchableOpacity,
-  ActivityIndicator,
   Linking,
-  Button,
+  ScrollView
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {ArrowLeftCircleIcon, HeartIcon} from 'react-native-heroicons/outline';
@@ -44,7 +43,7 @@ const ArticleDetailsScreen: React.FC = () => {
   }, [favourites]);
 
   return (
-    <View style={styles.container}>
+      <ScrollView style={styles.container}>
       <Image
         source={{
           uri: article.urlToImage ?? 'https://picsum.photos/800',
@@ -95,7 +94,7 @@ const ArticleDetailsScreen: React.FC = () => {
           )}
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
