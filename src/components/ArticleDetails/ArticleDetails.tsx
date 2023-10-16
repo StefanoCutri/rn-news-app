@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Linking,
+  Button,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {ArrowLeftCircleIcon} from 'react-native-heroicons/outline';
+import {ArrowLeftCircleIcon, HeartIcon} from 'react-native-heroicons/outline';
 import {Article} from '../../interfaces';
 import styles from './styles';
 import {useSelector} from 'react-redux';
@@ -65,6 +66,12 @@ const ArticleDetailsScreen: React.FC = () => {
             </Text>
           </Text>
         </View>
+        <TouchableOpacity style={styles.addToFavourites} activeOpacity={0.7}>
+          <HeartIcon color="red" size={30} />
+          <Text style={{color: 'black', marginLeft: 10}}>
+            Add to Favourites{' '}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
