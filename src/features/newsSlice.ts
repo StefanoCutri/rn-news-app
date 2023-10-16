@@ -15,7 +15,7 @@ const initialState: NewsSlice = {
 }
 
 export const newsSlice = createSlice({
-  name: 'counter',
+  name: 'news',
   initialState,
   reducers: {
     getNews: (state, action: PayloadAction<Article[]>)=> {
