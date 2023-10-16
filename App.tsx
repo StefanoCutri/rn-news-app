@@ -5,6 +5,8 @@ import {Provider} from 'react-redux';
 import {store} from './src/features/store';
 import HomeScreen from './src/screens/HomeScreen';
 import ArticleScreen from './src/screens/ArticleScreen';
+import Header from './src/components/ui/Header/Header';
+import FavouritesScreen from './src/screens/FavouritesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,11 +15,13 @@ function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
+        screenOptions={{ headerTitle: (props) => <Header /> }}
+        >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Article" component={ArticleScreen} />
+          <Stack.Screen name="Favourites" component={FavouritesScreen} options={{
+            headerShown: false
+          }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
