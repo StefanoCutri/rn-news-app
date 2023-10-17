@@ -1,11 +1,13 @@
-import moment from 'moment';
 import React from 'react';
 import {Image, Text, TouchableOpacity} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import styles from './styles';
-import {Article} from '../../interfaces';
+
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/core';
+import LinearGradient from 'react-native-linear-gradient';
+import moment from 'moment';
+
+import {Article} from '../../interfaces';
+import styles from './styles';
 
 type RootStackParamList = {
   Article: {} | undefined;
@@ -17,9 +19,11 @@ export const NewsArticle: React.FC<{article: Article}> = ({article}) => {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.container}
-      onPress={() => navigation.navigate('Article', {
-        article: article
-      })}>
+      onPress={() =>
+        navigation.navigate('Article', {
+          article: article,
+        })
+      }>
       <Image
         source={{
           uri: article?.urlToImage ?? 'https://picsum.photos/800',

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 5,
     marginTop: 35,
-    marginBottom: 40
+    marginBottom: 40,
   },
 });
 

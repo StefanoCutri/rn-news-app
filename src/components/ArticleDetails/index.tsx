@@ -5,16 +5,18 @@ import {
   View,
   TouchableOpacity,
   Linking,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+
 import {ArrowLeftCircleIcon, HeartIcon} from 'react-native-heroicons/outline';
 import {HeartIcon as HeartIconSolid} from 'react-native-heroicons/solid';
-import {Article} from '../../interfaces';
-import styles from './styles';
-import {useDispatch, useSelector} from 'react-redux';
+
 import {RootState} from '../../features/store';
 import {toggleFavourite} from '../../features/favourtiesSlice';
+import {Article} from '../../interfaces';
+import styles from './styles';
 
 interface RouteParams {
   article: Article;
@@ -43,7 +45,7 @@ const ArticleDetailsScreen: React.FC = () => {
   }, [favourites]);
 
   return (
-      <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image
         source={{
           uri: article.urlToImage ?? 'https://picsum.photos/800',
@@ -76,8 +78,7 @@ const ArticleDetailsScreen: React.FC = () => {
         <TouchableOpacity
           style={styles.addToFavourites}
           activeOpacity={0.7}
-          onPress={handleToggle}
-          >
+          onPress={handleToggle}>
           {isFavorite ? (
             <>
               <HeartIconSolid color="red" size={30} />

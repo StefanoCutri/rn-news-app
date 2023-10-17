@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
+import {View, FlatList, ActivityIndicator, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { getNews, setSearchResults } from '../features/newsSlice';
-import { RootState } from '../features/store';
 import NewsService from '../data/api/NewsService';
-import { NewsArticle } from '../components/NewsArticle';
+import {getNews, setSearchResults} from '../features/newsSlice';
+import {RootState} from '../features/store';
+import {NewsArticle} from '../components/NewsArticle';
 import Navbar from '../components/ui/Navbar';
 
 const ITEMS_PER_PAGE = 10;
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const { news, filteredNews, isLoading } = useSelector((state: RootState) => state.news);
+  const {news, filteredNews, isLoading} = useSelector(
+    (state: RootState) => state.news,
+  );
 
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,8 +40,8 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const delay = setTimeout(() => {
-      const results = news.filter((article) =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase())
+      const results = news.filter(article =>
+        article.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       dispatch(setSearchResults(results));
     }, 500);
@@ -50,12 +52,12 @@ const HomeScreen = () => {
   const handleEndReached = () => {
     if (!isLoading && !isEndReached) {
       setIsEndReached(true);
-      setCurrentPage((prevPage) => prevPage + 1);
+      setCurrentPage(prevPage => prevPage + 1);
     }
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <Navbar onSearch={() => {}} setSearchTerm={setSearchTerm} />
       {isLoading && currentPage === 1 ? (
         <View style={styles.loadingContainer}>
@@ -65,7 +67,7 @@ const HomeScreen = () => {
         <FlatList
           data={filteredNews}
           keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <NewsArticle article={item} />}
+          renderItem={({item}) => <NewsArticle article={item} />}
           onEndReached={handleEndReached}
           onEndReachedThreshold={0.1}
         />

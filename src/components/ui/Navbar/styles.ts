@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    shadowColor: '#000', // for iOS shadow
+    shadowColor: '#000',
     margin: 10,
     borderRadius: 10,
-    paddingLeft: 12
+    paddingLeft: 12,
   },
   title: {
     color: 'black',

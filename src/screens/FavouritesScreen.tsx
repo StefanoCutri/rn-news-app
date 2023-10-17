@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, FlatList, Text} from 'react-native';
+
 import {useSelector} from 'react-redux';
+
 import {RootState} from '../features/store';
-import {NewsArticle} from '../components/NewsArticle';
 import FavouriteArticle from '../components/FavouriteArticle';
 import NoFavourites from '../components/NoFavourites';
 
 const FavouritesScreen = () => {
   const {favourites} = useSelector((state: RootState) => state.favourites);
   if (favourites.length === 0) {
-    return <NoFavourites />
+    return <NoFavourites />;
   }
   return (
     <>

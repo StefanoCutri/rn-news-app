@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
     fontSize: 18,
-    fontWeight: '600'
-  }
+    fontWeight: '600',
+  },
 });
 
 export default styles;

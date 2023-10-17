@@ -1,5 +1,5 @@
-import { NewsAPI } from '../../interfaces';
 import newsApi from './api';
+import {NewsAPI} from '../../interfaces';
 
 interface GetNewsParams {
   page?: number;
@@ -7,10 +7,10 @@ interface GetNewsParams {
 }
 
 const NewsService = {
-  getNews: async ({ page = 1, itemsPerPage = 10 }: GetNewsParams = {}) => {
+  getNews: async ({page = 1, itemsPerPage = 10}: GetNewsParams = {}) => {
     try {
       const response = await newsApi.get<NewsAPI>(
-        `top-headlines?language=en&page=${page}&pageSize=${itemsPerPage}`
+        `top-headlines?language=en&page=${page}&pageSize=${itemsPerPage}`,
       );
       return response.data.articles;
     } catch (error) {

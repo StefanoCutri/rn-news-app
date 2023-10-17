@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, TextInput, Text} from 'react-native';
+import {View, TextInput} from 'react-native';
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline';
+
 import styles from './styles';
 
 interface Props {
@@ -19,7 +20,7 @@ const Navbar: React.FC<Props> = ({onSearch, setSearchTerm}) => {
           width: '80%',
           color: '#000',
         }}
-        onChangeText={(text) => setSearchTerm(text)}
+        onChangeText={text => setSearchTerm(text)}
         onSubmitEditing={onSearch}
       />
     </View>

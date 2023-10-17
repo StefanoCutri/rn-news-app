@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import { Article } from '../../interfaces';
+
+import {Article} from '../../interfaces';
 import styles from './styles';
 
-interface Props{
+interface Props {
   article: Article;
 }
 
