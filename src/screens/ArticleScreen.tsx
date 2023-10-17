@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleDetails from '../components/ArticleDetails/ArticleDetails';
+import ArticleDetails from '../components/ArticleDetails';
 
 const ArticleScreen = () => {
   return <ArticleDetails />;

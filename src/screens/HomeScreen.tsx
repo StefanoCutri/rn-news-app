@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getNews, setSearchResults } from '../features/newsSlice';
 import { RootState } from '../features/store';
 import NewsService from '../data/api/NewsService';
-import { NewsArticle } from '../components/NewsArticle/NewsArticle';
-import Navbar from '../components/ui/Navbar/Navbar';
+import { NewsArticle } from '../components/NewsArticle';
+import Navbar from '../components/ui/Navbar';
 
 const ITEMS_PER_PAGE = 10;
 

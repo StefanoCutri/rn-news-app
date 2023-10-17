@@ -2,7 +2,7 @@ import React from 'react';
 import {View, FlatList, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../features/store';
-import {NewsArticle} from '../components/NewsArticle/NewsArticle';
+import {NewsArticle} from '../components/NewsArticle';
 import FavouriteArticle from '../components/FavouriteArticle';
 import NoFavourites from '../components/NoFavourites';
 
