@@ -76,7 +76,8 @@ const ArticleDetailsScreen: React.FC = () => {
         <TouchableOpacity
           style={styles.addToFavourites}
           activeOpacity={0.7}
-          onPress={handleToggle}>
+          onPress={handleToggle}
+          >
           {isFavorite ? (
             <>
               <HeartIconSolid color="red" size={30} />

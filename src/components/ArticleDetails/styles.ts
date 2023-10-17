@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
   addToFavourites: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    width: '80%',
+    width: '100%',
     backgroundColor: 'white',
     borderRadius: 15,
     padding: 12,
