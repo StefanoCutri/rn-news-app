@@ -10,6 +10,7 @@ type RootStackParamList = {
 };
 const Header = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home</Text>

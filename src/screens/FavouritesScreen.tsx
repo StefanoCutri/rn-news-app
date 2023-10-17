@@ -9,9 +9,11 @@ import NoFavourites from '../components/NoFavourites';
 
 const FavouritesScreen = () => {
   const {favourites} = useSelector((state: RootState) => state.favourites);
+  
   if (favourites.length === 0) {
     return <NoFavourites />;
   }
+
   return (
     <>
       <View

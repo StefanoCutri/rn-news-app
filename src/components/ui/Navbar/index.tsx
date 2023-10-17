@@ -8,6 +8,7 @@ interface Props {
   onSearch: () => void;
   setSearchTerm: (term: string) => void;
 }
+
 const Navbar: React.FC<Props> = ({onSearch, setSearchTerm}) => {
   return (
     <View style={styles.container}>

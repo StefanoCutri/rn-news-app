@@ -20,6 +20,7 @@ const HomeScreen = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isEndReached, setIsEndReached] = useState(false);
 
+  // Function to get news
   const fetchData = async () => {
     try {
       const fetchedNews = await NewsService.getNews({
@@ -34,10 +35,12 @@ const HomeScreen = () => {
     }
   };
 
+  // Get news when app is first loaded
   useEffect(() => {
     fetchData();
   }, [currentPage]);
 
+  // useEffect to filter news by query
   useEffect(() => {
     const delay = setTimeout(() => {
       const results = news.filter(article =>
@@ -49,6 +52,7 @@ const HomeScreen = () => {
     return () => clearTimeout(delay);
   }, [searchTerm, dispatch, news]);
 
+  // Fetch news when bottom is reached to create pagination
   const handleEndReached = () => {
     if (!isLoading && !isEndReached) {
       setIsEndReached(true);

@@ -25,24 +25,26 @@ interface RouteParams {
 const ArticleDetailsScreen: React.FC = () => {
   const {favourites} = useSelector((state: RootState) => state.favourites);
   const navigation = useNavigation();
+
   const route = useRoute();
   const {article} = route.params as RouteParams;
+
   const dispatch = useDispatch();
+
   const isFavorite = favourites.some(
     favArticle => favArticle.source.name === article.source.name,
   );
 
+  // Navigate to article website
   const handleURLPress = useCallback(() => {
     Linking.openURL(article?.url);
   }, [article]);
 
+
+  // Function to add or remove article from favorites
   const handleToggle = () => {
     dispatch(toggleFavourite(article));
   };
-
-  useEffect(() => {
-    console.log({isFavorite});
-  }, [favourites]);
 
   return (
     <ScrollView style={styles.container}>

@@ -15,6 +15,7 @@ type RootStackParamList = {
 
 export const NewsArticle: React.FC<{article: Article}> = ({article}) => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  
   return (
     <TouchableOpacity
       activeOpacity={0.7}
