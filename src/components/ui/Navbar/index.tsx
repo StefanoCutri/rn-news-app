@@ -14,7 +14,7 @@ const Navbar: React.FC<Props> = ({onSearch, setSearchTerm}) => {
     <View style={styles.container}>
       <MagnifyingGlassIcon color="black" size={18} />
       <TextInput
-        placeholder="Search"
+        placeholder="Search by category"
         keyboardType="default"
         placeholderTextColor="#000"
         style={{

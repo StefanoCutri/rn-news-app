@@ -27,7 +27,7 @@ export const NewsArticle: React.FC<{article: Article}> = ({article}) => {
       }>
       <Image
         source={{
-          uri: article?.urlToImage ?? 'https://picsum.photos/800',
+          uri: article.urlToImage || 'https://picsum.photos/800',
           cache: 'force-cache',
         }}
         resizeMode={'cover'}

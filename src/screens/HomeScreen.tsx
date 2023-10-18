@@ -3,10 +3,15 @@ import {View, FlatList, ActivityIndicator, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import NewsService from '../data/api/NewsService';
-import {getNews, setSearchResults} from '../features/newsSlice';
+import {
+  getNews,
+  getNewsByCategory,
+  setSearchResults,
+} from '../features/newsSlice';
 import {RootState} from '../features/store';
 import {NewsArticle} from '../components/NewsArticle';
 import Navbar from '../components/ui/Navbar';
+import NewsByCategory from '../components/NewsByCategory';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -40,19 +45,26 @@ const HomeScreen = () => {
     fetchData();
   }, [currentPage]);
 
-  // useEffect to filter news by query
+  // useEffect to filter news by category
   useEffect(() => {
-    const delay = setTimeout(() => {
-      const results = news.filter(article =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()),
-      );
-      dispatch(setSearchResults(results));
+    dispatch(getNewsByCategory([]));
+    const delay = setTimeout(async () => {
+      if (searchTerm.length > 3) {
+        try {
+          const fetchedNews = await NewsService.getNewsByQuery(searchTerm);
+          dispatch(getNewsByCategory(fetchedNews));
+          setIsEndReached(false);
+        } catch (error) {
+          console.error('Error fetching news:', error);
+          setIsEndReached(false);
+        }
+      }
     }, 500);
 
     return () => clearTimeout(delay);
   }, [searchTerm, dispatch, news]);
 
-  // Fetch news when bottom is reached to create pagination
+  // Fetch news when bottom is reached to create
   const handleEndReached = () => {
     if (!isLoading && !isEndReached) {
       setIsEndReached(true);
@@ -68,12 +80,9 @@ const HomeScreen = () => {
           <ActivityIndicator size="large" color="#000" />
         </View>
       ) : (
-        <FlatList
-          data={filteredNews}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => <NewsArticle article={item} />}
-          onEndReached={handleEndReached}
-          onEndReachedThreshold={0.1}
+        <NewsByCategory
+        handleEndReached={handleEndReached}
+          searchTerm={searchTerm}
         />
       )}
     </View>

@@ -50,7 +50,7 @@ const ArticleDetailsScreen: React.FC = () => {
     <ScrollView style={styles.container}>
       <Image
         source={{
-          uri: article.urlToImage ?? 'https://picsum.photos/800',
+          uri: article.urlToImage || 'https://picsum.photos/800',
           cache: 'force-cache',
         }}
         resizeMode={'cover'}
