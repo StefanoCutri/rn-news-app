@@ -18,8 +18,6 @@ const NewsService = {
       throw error;
     }
   },
-  
-  // Fetch news based on category parameters
   getNewsByQuery: async (category: string = '') => {
     try {
       const response = await newsApi.get<FilteredArticles>(
