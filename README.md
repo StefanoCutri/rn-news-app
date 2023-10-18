@@ -7,7 +7,7 @@ This is a React Native application that displays real-time news using a news API
 - Display a list of news articles.
 - View more details of an article by tapping on it.
 - Save favorite articles.
-- Search for news by query.
+- Search for news by category.
 - Implement a pagination system for infinite scrolling.
 - Use Redux-toolkit to manage application state.
 - Use React Navigation for screen navigation.
