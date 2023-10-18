@@ -1,6 +1,7 @@
-import {View, FlatList, ActivityIndicator} from 'react-native';
 import React from 'react';
+import {View, FlatList, ActivityIndicator} from 'react-native';
 import {useSelector} from 'react-redux';
+
 import {RootState} from '../../features/store';
 import {NewsArticle} from '../NewsArticle';
 import CategoryCard from '../CategoryCard';
@@ -11,11 +12,11 @@ interface Props {
 }
 
 const NewsByCategory = ({searchTerm, handleEndReached}: Props) => {
-
   const {news, newsByCategory, isLoading} = useSelector(
     (state: RootState) => state.news,
   );
 
+  // If user hasn't typed anything, show previous results
   if (searchTerm === '') {
     return (
       <FlatList
@@ -27,7 +28,8 @@ const NewsByCategory = ({searchTerm, handleEndReached}: Props) => {
       />
     );
   }
-  
+
+  // Else, you search results
   return (
     <View style={{paddingBottom: 100}}>
       {isLoading ? (
